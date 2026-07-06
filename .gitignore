@@ -1,0 +1,33 @@
+# ============================================================
+# Large binary content kept on disk but NOT tracked by git.
+# Git provides no benefit for these (no meaningful diffs) and
+# tracking them would roughly double their disk usage.
+# ============================================================
+
+# Raw oscilloscope absorption data (multi-GB of CSV traces)
+04_Beam_Characterization/absorption_data/
+
+# Byte-identical duplicates preserved for safety
+99_Archive/duplicates/
+
+# Bulk lab photo dump (~1 GB of JPGs; curated thesis figures ARE tracked)
+06_Figures_and_Media/Thesis_Figures/Lab Photos/
+
+# Video files anywhere in the repo
+*.MOV
+*.mov
+*.mp4
+
+# Very large prior-lab CAD assemblies (Kovachy MOT, several hundred MB)
+09_Kovachy_Lab/first MOT/
+
+# PlatformIO vendored libraries and build artifacts (TempReading)
+.pio/
+
+# OS / editor cruft
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Claude Code local settings
+.claude/settings.local.json

@@ -1,0 +1,1132 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Wolfram 14.3' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       154,          7]
+NotebookDataLength[     42488,       1122]
+NotebookOptionsPosition[     40591,       1083]
+NotebookOutlinePosition[     41026,       1100]
+CellTagsIndexPosition[     40983,       1097]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"Clear", "[", "\"\<Global`*\>\"", "]"}], "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Geometry", " ", "Consts"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"ID", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"0.004", ",", " ", "\"\<Inches\>\""}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"L", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"0.3", ",", " ", "\"\<Inches\>\""}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Ncap", " ", "=", " ", "231"}], ";"}], "\n"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"rgs", " ", "=", " ", 
+    RowBox[{"Quantity", "[", 
+     RowBox[{"0.5", ",", "\"\<Centimeters\>\""}], "]"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Physical", " ", "Const"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"BoltzmanConst", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1.380649*^-23", ",", " ", 
+     RowBox[{"\"\<kg\>\"", "*", 
+      SuperscriptBox["\"\<Meters\>\"", "2"], "*", 
+      SuperscriptBox["\"\<s\>\"", 
+       RowBox[{"-", "2"}]], "*", 
+      SuperscriptBox["\"\<Kelvins\>\"", 
+       RowBox[{"-", "1"}]]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"IdealGasConst", " ", "=", " ", 
+    RowBox[{"Quantity", "[", 
+     RowBox[{"8.314", ",", " ", 
+      RowBox[{"\"\<Joules\>\"", "*", 
+       SuperscriptBox["\"\<Moles\>\"", 
+        RowBox[{"-", "1"}]], "*", 
+       SuperscriptBox["\"\<Kelvins\>\"", 
+        RowBox[{"-", "1"}]]}]}], "]"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Const", ",", " ", "Ar"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"mAr", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"39.948", ",", " ", "\"\<amu\>\""}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"MAr", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"39.948", ",", 
+     RowBox[{"\"\<Grams\>\"", "/", "\"\<Moles\>\""}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Sigma]Ar", " ", "=", " ", 
+    RowBox[{"Quantity", "[", 
+     RowBox[{"340", ",", " ", "\"\<pm\>\""}], "]"}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"https", ":"}], "//", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"www", ".", "omnicalculator", ".", "com"}], "/", "physics"}], "/",
+       "mean"}], "-", "free", "-", "path"}]}], "*)"}], 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"https", ":"}], "//", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"web", ".", "archive", ".", "org"}], "/", "web"}], "/", 
+       "20231216044029"}], "/", 
+      RowBox[{"https", ":"}]}]}], "//", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"en", ".", "wikipedia", ".", "org"}], "/", "wiki"}], "/", 
+       "Kinetic_diameter"}], "#cite", "_note"}], "-", "Breck", "-", "5"}]}], 
+   "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Rho]Ar5K", " ", "=", " ", 
+    RowBox[{"Quantity", "[", 
+     RowBox[{"1.776", ",", 
+      RowBox[{"\"\<Grams\>\"", "*", 
+       SuperscriptBox["\"\<Centimeters\>\"", 
+        RowBox[{"-", "3"}]]}]}], "]"}]}], ";"}], " ", 
+  RowBox[{"(*", 
+   RowBox[{
+    RowBox[{"https", ":"}], "//", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"iopscience", ".", "iop", ".", "org"}], "/", "article"}], "/",
+        "10.1088"}], "/", "0370"}], "-", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"1328", "/", "78"}], "/", "6"}], "/", "347"}]}]}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"\[Rho]Ar10K", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1.775", ",", 
+     RowBox[{"\"\<Grams\>\"", "*", 
+      SuperscriptBox["\"\<Centimeters\>\"", 
+       RowBox[{"-", "3"}]]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"\[Rho]Ar15K", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"1.773", ",", 
+     RowBox[{"\"\<Grams\>\"", "*", 
+      SuperscriptBox["\"\<Centimeters\>\"", 
+       RowBox[{"-", "3"}]]}]}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Rho]Ar20K", " ", "=", " ", 
+    RowBox[{"Quantity", "[", 
+     RowBox[{"1.768", ",", 
+      RowBox[{"\"\<Grams\>\"", "*", 
+       SuperscriptBox["\"\<Centimeters\>\"", 
+        RowBox[{"-", "3"}]]}]}], "]"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Get", " ", "Argon", " ", "density", " ", "STP"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"Tstd", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"273.15", ",", " ", "\"\<Kelvins\>\""}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{"Pstd", " ", "=", " ", 
+   RowBox[{"Quantity", "[", 
+    RowBox[{"101325", ",", " ", "\"\<Pascals\>\""}], "]"}]}], ";"}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Rho]ArSTP", " ", "=", " ", 
+    RowBox[{"UnitSimplify", "[", 
+     RowBox[{"Pstd", " ", "*", " ", 
+      RowBox[{"MAr", " ", "/", " ", 
+       RowBox[{"(", 
+        RowBox[{"IdealGasConst", " ", "*", " ", "Tstd"}], ")"}]}]}], "]"}]}], 
+   ";"}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Mean", " ", "Velocity", " ", "MB", " ", "dist"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{
+    RowBox[{"meanV", "[", "T_", "]"}], ":=", " ", 
+    RowBox[{"Sqrt", "[", 
+     RowBox[{"8", "*", "BoltzmanConst", "*", 
+      FractionBox["T", 
+       RowBox[{"Pi", "*", "mAr"}]]}], "]"}]}], ";"}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"throughput", " ", "nozzle"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"Qnoz", "[", 
+    RowBox[{"T_", ",", "P_"}], "]"}], ":=", 
+   RowBox[{"Ncap", "*", "P", "*", 
+    FractionBox["Pi", "12"], "*", 
+    RowBox[{"meanV", "[", "T", "]"}], "*", 
+    FractionBox[
+     SuperscriptBox["ID", "3"], "L"]}]}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Mass", " ", "flow", " ", 
+    RowBox[{"nozzle", "/", "Ar"}]}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"mflow", "[", 
+    RowBox[{"T_", ",", "P_"}], "]"}], ":=", 
+   RowBox[{"UnitConvert", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Qnoz", "[", 
+       RowBox[{"T", ",", "P"}], "]"}], "*", 
+      FractionBox["MAr", 
+       RowBox[{"T", "*", "IdealGasConst"}]]}], ",", 
+     RowBox[{"\"\<g\>\"", "/", "\"\<Hours\>\""}]}], "]"}]}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Growth", " ", "rate"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"hdot", "[", 
+    RowBox[{"T_", ",", "P_", ",", "\[Rho]_"}], "]"}], " ", ":=", " ", 
+   RowBox[{"UnitConvert", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"mflow", "[", 
+       RowBox[{"T", ",", "P"}], "]"}], "*", 
+      FractionBox["1", 
+       RowBox[{"\[Rho]", "*", "Pi", "*", 
+        SuperscriptBox["rgs", "2"]}]]}], ",", 
+     RowBox[{"\"\<Micrometers\>\"", "/", "\"\<Hours\>\""}]}], "]"}]}], "\n", 
+  "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Mean", " ", "Free", " ", "Path"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"\[Lambda]Ar", "[", 
+    RowBox[{"T_", ",", "P_"}], "]"}], ":=", 
+   RowBox[{"UnitConvert", "[", 
+    RowBox[{
+     RowBox[{
+      FractionBox["BoltzmanConst", 
+       RowBox[{
+        RowBox[{"Sqrt", "[", "2", "]"}], "*", "Pi", "*", 
+        SuperscriptBox["\[Sigma]Ar", "2"]}]], "*", 
+      FractionBox["T", "P"]}], ",", "\"\<Micrometers\>\""}], "]"}]}], "\n", 
+  "\n", 
+  RowBox[{"(*", 
+   RowBox[{"Flow", " ", "SCCM"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"FlowMdotToSCCM", "[", "mdot_", "]"}], ":=", 
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{"mdot", "/", "\[Rho]ArSTP"}], ",", 
+    RowBox[{
+     SuperscriptBox["\"\<Centimeters\>\"", "3"], "/", "\"\<Minutes\>\""}]}], 
+   "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"FlowSCCMToMdot", "[", "FlowSCCM_", "]"}], ":=", 
+   RowBox[{"UnitConvert", "[", 
+    RowBox[{
+     RowBox[{"\[Rho]ArSTP", "*", "FlowSCCM"}], ",", 
+     RowBox[{"\"\<g\>\"", "/", "\"\<s\>\""}]}], "]"}]}], "\n", "\n", 
+  RowBox[{"(*", 
+   RowBox[{"SCCM", " ", "to", " ", "hdot"}], "*)"}]}], "\n", 
+ RowBox[{
+  RowBox[{"FlowSCCMToHdot", "[", 
+   RowBox[{"FlowSCCM_", ",", "\[Rho]_"}], "]"}], ":=", 
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"FlowSCCMToMdot", "[", "FlowSCCM", "]"}], "*", 
+     FractionBox["1", 
+      RowBox[{"\[Rho]", "*", "Pi", "*", 
+       SuperscriptBox["rgs", "2"]}]]}], ",", 
+    RowBox[{"\"\<Micrometers\>\"", "/", "\"\<Hours\>\""}]}], "]"}]}], "\n", 
+ RowBox[{
+  RowBox[{"hdotToSCCM", "[", 
+   RowBox[{"hdot_", ",", "\[Rho]_"}], "]"}], ":=", 
+  RowBox[{"UnitConvert", "[", 
+   RowBox[{
+    RowBox[{"\[Rho]", "*", "Pi", "*", 
+     FractionBox[
+      SuperscriptBox["rgs", "2"], "\[Rho]ArSTP"], "*", "hdot"}], ",", 
+    RowBox[{
+     SuperscriptBox["\"\<Centimeters\>\"", "3"], "/", "\"\<Minutes\>\""}]}], 
+   "]"}]}]}], "Code",
+ CellChangeTimes->{3.986499548289444*^9},
+ CellLabel->
+  "In[399]:=",ExpressionUUID->"24bc1af0-fbb6-654f-8bf0-b074e7c915ed"],
+
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{
+  "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "\n", 
+   "   ", 
+   RowBox[{
+    RowBox[{"WARNING", "**", " ", "Taken"}], " ", "from", " ", 
+    RowBox[{"ArFLowRate", ".", " ", "Used"}], " ", "calude", " ", "to", " ", 
+    "relearn", " ", "what", " ", "I", " ", "was", " ", "\n", "   ", "doing", " ",
+     "and", " ", "added", " ", 
+    RowBox[{"comments", "/", 
+     RowBox[{"check", " ", "**", "WARNING"}]}], "\n", "   ", 
+    RowBox[{"WARNING", "**", " ", "Double"}], " ", "check", " ", "all", " ", 
+    "work", " ", "here", " ", 
+    RowBox[{"though", ".", " ", 
+     RowBox[{"**", "WARNING"}]}]}], "\n", "   ", "===", "===", "===", "===", "===",
+    "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+    "===", "===", "===", "==="}], " ", "*)"}]], "Code",
+ CellChangeTimes->{{3.9864974649478817`*^9, 
+  3.9864975231323776`*^9}},ExpressionUUID->"7a53e305-3676-9049-8a51-\
+1e0662c94324"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+       "===", "===", "===", "===", "===", "===", "===", "===", "===", "\n", 
+      "   ", 
+      RowBox[{"CELL", " ", "1"}]}], ":", " ", 
+     RowBox[{
+      RowBox[{
+      "Equilibrium", " ", "Background", " ", "Pressure", " ", "from", " ", 
+       "Leaks"}], " ", "+", " ", "Pump", "-", 
+      RowBox[{"Down", " ", "Time", "\n", "   ", "Taken", " ", "from", " ", 
+       RowBox[{"ArFLowRate", ".", "\n", "   ", 
+        RowBox[{"WARNING", "**", " ", "Used"}]}], " ", "calude", " ", "to", " ",
+        "relearn", " ", "what", " ", "I", " ", "was", " ", "doing", " ", 
+       "and", " ", "added", " ", 
+       RowBox[{"comments", "/", "check"}], "\n", "   ", "Double", " ", 
+       "check", " ", "all", " ", "work", " ", "here", " ", 
+       RowBox[{"though", ".", "  ", 
+        RowBox[{"**", "WARNING"}]}], "\n", "  ", "\n", "   ", "Models", " ", 
+       "the", " ", "vacuum", " ", "chamber", " ", "as", " ", "a", " ", "long",
+        " ", "cylindrical", " ", 
+       RowBox[{"tube", ".", "\n", "   ", "At"}], " ", "steady", " ", 
+       RowBox[{"state", ":", " ", "P_eq"}]}]}]}], " ", "=", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"Q_leak", " ", "/", " ", "S_eff"}], "\n", "   ", "where", " ", 
+      "S_eff", " ", "is", " ", "set", " ", "by", " ", "the", " ", "series", " ",
+       "combination", " ", "of", " ", "pump", " ", "speed", "\n", "   ", 
+      "and", " ", "tube", " ", "conductance", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"typically", " ", "conductance"}], "-", "limited"}], ")"}], 
+       "."}]}], "\n", "   ", "===", "===", "===", "===", "===", "===", "===", 
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "==="}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"-", " ", "Chamber"}]}], " ", 
+     RowBox[{"Geometry", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"LengthChamber", " ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"2.0", ",", " ", "\"\<Meters\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"IDChamber", "     ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"36", ",", " ", "\"\<Millimeters\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"VolumeChamber", " ", "=", " ", 
+     RowBox[{"LengthChamber", " ", "*", " ", "Pi", " ", "*", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"IDChamber", "/", "2"}], ")"}], "^", "2"}]}]}], ";"}], "\n", 
+   "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"-", " ", "Pump"}]}], " ", 
+      RowBox[{"Speed", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Sp", " ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"61", ",", " ", 
+       RowBox[{"\"\<Liters\>\"", "/", "\"\<Seconds\>\""}]}], "]"}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{
+        RowBox[{"--", 
+         RowBox[{"-", " ", "Tube"}]}], " ", "Conductance", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"molecular", " ", "flow"}], ",", " ", 
+           RowBox[{"circular", " ", "tube"}]}], ")"}], " ", "--"}]}], "-", 
+       "\n", "   ", 
+       RowBox[{"Formula", ":", " ", "C"}]}], " ", "=", " ", 
+      RowBox[{"12", " ", "*", " ", 
+       RowBox[{
+        RowBox[{"d", "^", "3"}], " ", "/", " ", "L"}], "  ", "with", " ", "d",
+        " ", "and", " ", "L", " ", "in", " ", "cm"}]}], ",", " ", 
+     RowBox[{
+      RowBox[{"result", " ", "in", " ", 
+       RowBox[{"L", "/", 
+        RowBox[{"s", ".", "\n", "   ", "We"}]}], " ", "plug", " ", "in", " ", 
+       "numbers", " ", "directly", " ", "to", " ", "avoid", " ", "carrying", " ", 
+       RowBox[{"L", "/", 
+        RowBox[{"(", 
+         RowBox[{"cm", "*", "s"}], ")"}]}], " ", 
+       RowBox[{"units", ".", " ", "\n", "   ", "d"}]}], " ", "=", " ", 
+      RowBox[{"3.6", " ", "cm"}]}], ",", " ", 
+     RowBox[{"L", " ", "=", " ", 
+      RowBox[{"200", " ", "cm"}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Con", " ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{
+       RowBox[{"12", " ", "*", " ", 
+        RowBox[{
+         RowBox[{"3.6", "^", "3"}], " ", "/", " ", "200"}]}], ",", " ", 
+       RowBox[{"\"\<Liters\>\"", "/", "\"\<Seconds\>\""}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Con = \>\"", ",", " ", "Con"}], "]"}], "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"should", " ", 
+     RowBox[{"be", " ", "~", "2.8"}], " ", 
+     RowBox[{"L", "/", "s"}]}], " ", "*)"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"--", 
+        RowBox[{"-", " ", "Effective"}]}], " ", "pumping", " ", "speed", " ", 
+       RowBox[{"(", "series", ")"}]}], ":", " ", 
+      RowBox[{"1", "/", "Seff"}]}], " ", "=", " ", 
+     RowBox[{
+      RowBox[{"1", "/", "Sp"}], " ", "+", " ", 
+      RowBox[{"1", "/", 
+       RowBox[{"Con", " ", "--"}]}], "-"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Seff", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"(", 
+       RowBox[{"Sp", " ", "*", " ", "Con"}], ")"}], " ", "/", " ", 
+      RowBox[{"(", 
+       RowBox[{"Sp", " ", "+", " ", "Con"}], ")"}]}]}], ";"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Seff = \>\"", ",", " ", 
+     RowBox[{"UnitConvert", "[", 
+      RowBox[{"Seff", ",", " ", 
+       RowBox[{"\"\<Liters\>\"", "/", "\"\<Seconds\>\""}]}], "]"}]}], "]"}], 
+   "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"--", 
+        RowBox[{"-", " ", "Leak"}]}], " ", 
+       RowBox[{"Rates", " ", "--"}]}], "-", "\n", "   ", 
+      RowBox[{"QperJoint", ":", " ", 
+       RowBox[{
+        RowBox[{"measured", "/", 
+         RowBox[{"spec", "'"}]}], "d", " ", "leak", " ", "rate", " ", "per", " ",
+         "fitting", "\n", "   ", "Qmax"}], ":", " ", 
+       RowBox[{"4", " ", "joints", " ", "at", " ", "full", " ", "spec", " ", 
+        RowBox[{"(", 
+         RowBox[{"worst", " ", "case"}], ")"}], "\n", "   ", 
+        RowBox[{"Qave", ":", " ", 
+         RowBox[{"average", " ", "case"}]}]}]}]}], ",", " ", 
+     RowBox[{"10", "%", " ", "of", " ", "max"}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"QperJoint", " ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"0.0127", ",", " ", 
+       RowBox[{"\"\<Torr\>\"", " ", "*", " ", 
+        RowBox[{"\"\<Liters\>\"", "/", "\"\<Seconds\>\""}]}]}], "]"}]}], 
+    ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Njoints", "   ", "=", " ", "4"}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Qmax", " ", "=", " ", 
+     RowBox[{"Njoints", " ", "*", " ", "QperJoint"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Qave", " ", "=", " ", 
+     RowBox[{"0.1", " ", "*", " ", "Qmax"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"-", " ", "Equilibrium"}]}], " ", "Background", " ", 
+      RowBox[{"Pressures", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+   RowBox[{"Pmax", " ", "=", " ", 
+    RowBox[{"UnitConvert", "[", 
+     RowBox[{
+      RowBox[{"Qmax", " ", "/", " ", "Seff"}], ",", " ", "\"\<Torr\>\""}], 
+     "]"}]}], "\n", 
+   RowBox[{"Pave", " ", "=", " ", 
+    RowBox[{"UnitConvert", "[", 
+     RowBox[{
+      RowBox[{"Qave", " ", "/", " ", "Seff"}], ",", " ", "\"\<Torr\>\""}], 
+     "]"}]}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"--", 
+        RowBox[{"-", " ", "Pump"}]}], "-", 
+       RowBox[{"Down", " ", 
+        RowBox[{"Time", " ", "--"}]}], "-", "\n", "   ", "t"}], " ", "=", " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"V", "/", "S_eff"}], ")"}], " ", "*", " ", "ln", 
+       RowBox[{"(", 
+        RowBox[{"P_initial", "/", "P_final"}], ")"}], "\n", "   ", "Ignores", 
+       " ", "outgassing"}]}], ",", " ", 
+     RowBox[{
+     "which", " ", "dominates", " ", "in", " ", "practice", " ", "at", " ", 
+      RowBox[{"UHV", "."}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"Pinitial", " ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"2.*^-2", ",", " ", "\"\<Torr\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"Pfinal", "   ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"1.*^-9", ",", " ", "\"\<Torr\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{"PumpDownTime", " ", "=", " ", 
+    RowBox[{"UnitConvert", "[", "\n", "  ", 
+     RowBox[{
+      RowBox[{"VolumeChamber", " ", "*", " ", 
+       RowBox[{
+        RowBox[{"Quantity", "[", 
+         RowBox[{"1000", ",", " ", 
+          RowBox[{"\"\<Liters\>\"", "/", 
+           RowBox[{"\"\<Meters\>\"", "^", "3"}]}]}], "]"}], " ", "/", " ", 
+        "Seff"}], " ", "*", " ", 
+       RowBox[{"Log", "[", 
+        RowBox[{"Pinitial", "/", "Pfinal"}], "]"}]}], ",", "\n", 
+      "  ", "\"\<Hours\>\""}], "]"}]}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Estimated pump-down time = \>\"", ",", " ", "PumpDownTime"}],
+     "]"}]}]}]], "Code",
+ CellChangeTimes->{{3.986497190159048*^9, 3.986497285283333*^9}, {
+  3.9864974099584503`*^9, 3.986497414920143*^9}},
+ CellLabel->
+  "In[311]:=",ExpressionUUID->"c71c910d-b9d3-494b-8581-7512598222e2"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Con = \"\>", "\[InvisibleSpace]", 
+   TemplateBox[{"2.7993600000000005`", 
+     RowBox[{
+      "\"L\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", "\"s\""}], 
+     "liters per second", 
+     FractionBox["\"Liters\"", "\"Seconds\""]},
+    "Quantity"]}],
+  SequenceForm["Con = ", 
+   Quantity[2.7993600000000005`, "Liters"/"Seconds"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.98649727115431*^9, 3.986497292704035*^9}, 
+   3.986497415437704*^9},
+ CellLabel->
+  "During evaluation of \
+In[311]:=",ExpressionUUID->"d2719d03-243b-f84a-94c9-001fbe07783c"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Seff = \"\>", "\[InvisibleSpace]", 
+   TemplateBox[{"2.6765309244481457`", 
+     RowBox[{
+      "\"L\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", "\"s\""}], 
+     "liters per second", 
+     FractionBox["\"Liters\"", "\"Seconds\""]},
+    "Quantity"]}],
+  SequenceForm["Seff = ", 
+   Quantity[2.6765309244481457`, "Liters"/"Seconds"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.98649727115431*^9, 3.986497292704035*^9}, 
+   3.986497415439699*^9},
+ CellLabel->
+  "During evaluation of \
+In[311]:=",ExpressionUUID->"f733f970-5ce9-8540-9502-05192a7b5084"]
+}, Open  ]],
+
+Cell[BoxData[
+ TemplateBox[{"0.018979791914966973`", "\"Torr\"", "torr", "\"Torr\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{{3.986497271156311*^9, 3.9864972927050323`*^9}, 
+   3.986497415439699*^9},
+ CellLabel->
+  "Out[323]=",ExpressionUUID->"54352585-999a-8244-9f29-5943e7adcf73"],
+
+Cell[BoxData[
+ TemplateBox[{"0.0018979791914966976`", "\"Torr\"", "torr", "\"Torr\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{{3.986497271156311*^9, 3.9864972927050323`*^9}, 
+   3.9864974154406986`*^9},
+ CellLabel->
+  "Out[324]=",ExpressionUUID->"67c51d59-5915-d94a-b0c8-19c0bd66fc45"],
+
+Cell[BoxData[
+ TemplateBox[{"0.0035518117011325823`", "\"h\"", "hours", "\"Hours\""},
+  "Quantity"]], "Output",
+ CellChangeTimes->{{3.986497271156311*^9, 3.9864972927050323`*^9}, 
+   3.9864974154417*^9},
+ CellLabel->
+  "Out[327]=",ExpressionUUID->"d07beea7-d81e-fc4a-a5f6-61b1c5ce935f"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Estimated pump-down time = \"\>", "\[InvisibleSpace]", 
+   TemplateBox[{"0.0035518117011325823`", "\"h\"", "hours", "\"Hours\""},
+    "Quantity"]}],
+  SequenceForm["Estimated pump-down time = ", 
+   Quantity[0.0035518117011325823`, "Hours"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{{3.98649727115431*^9, 3.986497292704035*^9}, 
+   3.9864974154417*^9},
+ CellLabel->
+  "During evaluation of \
+In[311]:=",ExpressionUUID->"b6613e9a-0ef0-da47-b812-d6464eabd953"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+       "===", "===", "===", "===", "===", "===", "===", "===", "===", "\n", 
+      "   ", 
+      RowBox[{"CELL", " ", "2"}]}], ":", " ", 
+     RowBox[{
+      RowBox[{
+      "Rb", " ", "Depletion", " ", "from", " ", "Reactive", " ", "Impurity", " ",
+        "in", " ", "Ar", " ", "Supply", "\n", "   ", "\n", "   ", "Worst"}], "-", 
+      RowBox[{"case", " ", "estimate"}]}], ":", " ", 
+     RowBox[{
+     "assumes", " ", "all", " ", "impurity", " ", "in", " ", "the", " ", "Ar",
+       " ", "flow", "\n", "   ", "reaches", " ", "and", " ", "reacts", " ", 
+      "with", " ", "Rb"}]}], ",", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"and", " ", "consumes", " ", "it", " ", 
+       RowBox[{"stoichiometrically", ".", "\n", "   ", "\n", "   ", "The"}], " ",
+        "key", " ", "reaction", " ", 
+       RowBox[{"(", 
+        RowBox[{
+         RowBox[{"e", ".", "g", ".", " ", "with"}], " ", "water"}], ")"}]}], ":",
+       "  ", 
+      RowBox[{
+       RowBox[{"2", " ", "Rb"}], " ", "+", " ", 
+       RowBox[{"2", " ", "H2O"}]}]}], " ", "->", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"2", " ", "RbOH"}], " ", "+", " ", 
+       RowBox[{"H2", "\n", "   ", "So", " ", "1", " ", "mol", " ", "H2O", " ", 
+        RowBox[{"(", 
+         RowBox[{"18", " ", "g"}], ")"}], " ", "consumes", " ", "1", " ", 
+        "mol", " ", "Rb", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{"85.5", " ", "g"}], ")"}], ".", "\n", "   ", "For"}], " ", 
+        RowBox[{"O2", ":", "  ", 
+         RowBox[{
+          RowBox[{"4", " ", "Rb"}], " ", "+", " ", "O2"}]}]}]}], " ", "->", 
+      " ", 
+      RowBox[{
+      "2", " ", "Rb2O", "\n", "   ", "So", " ", "1", " ", "mol", " ", "O2", " ", 
+       RowBox[{"(", 
+        RowBox[{"32", " ", "g"}], ")"}], " ", "consumes", " ", "4", " ", 
+       "mol", " ", "Rb", " ", 
+       RowBox[{
+        RowBox[{"(", 
+         RowBox[{"342", " ", "g"}], ")"}], ".", "\n", "   ", "\n", "   ", 
+        "This"}], " ", "calculation", " ", "uses", " ", "mass", " ", "flow", " ",
+        "directly", " ", 
+       RowBox[{"(", 
+        RowBox[{"1", ":", 
+         RowBox[{"1", " ", "by", " ", "mass"}]}], ")"}]}]}]}], ",", " ", 
+    RowBox[{
+     RowBox[{"which", " ", "is", " ", "\n", "   ", 
+      RowBox[{"conservative", "/", "optimistic"}], " ", 
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{
+        "actual", " ", "Rb", " ", "consumed", " ", "per", " ", "gram", " ", 
+         "of", " ", "impurity", " ", "\n", "   ", "is", " ", "HIGHER", " ", 
+         "by", " ", 
+         RowBox[{
+          RowBox[{"factor", " ", "~", "M_Rb"}], "/", "M_impurity"}], " ", "*",
+          " ", "stoich"}], ")"}], ".", " ", "But"}], " ", "the", " ", 
+      "answer", "\n", "   ", "is", " ", "so", " ", "comfortable", " ", "that",
+       " ", "this", " ", "does", " ", "not", " ", "change", " ", "the", " ", 
+      RowBox[{"conclusion", "."}]}], "\n", "   ", "===", "===", "===", "===", 
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+      "===", "===", "===", "===", "==="}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"-", " ", "Ar"}]}], " ", "flow", " ", "and", " ", "impurity", " ", 
+     RowBox[{"fraction", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"ArSCCMFlow", " ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"0.13", ",", " ", 
+       RowBox[{
+        SuperscriptBox["\"\<cm\>\"", "3"], "/", "\"\<Minutes\>\""}]}], 
+      "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ArMassFlow", "  ", "=", " ", 
+     RowBox[{"FlowSCCMToMdot", "[", "ArSCCMFlow", "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"BadImpurity", " ", "=", " ", "2*^-6"}], ";"}], 
+   "                          ", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "1", " ", "ppm", " ", "reactive", " ", "impurity", " ", "in", " ", "Ar"}],
+     " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"BadMassFlow", " ", "=", " ", 
+     RowBox[{"ArMassFlow", " ", "*", " ", "BadImpurity"}]}], ";"}], 
+   "        ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"impurity", " ", "mass", " ", "flow"}], " ", "*)"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"-", " ", "Rb"}]}], " ", 
+      RowBox[{"supply", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"RbMass", "  ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"0.1", ",", " ", "\"\<Grams\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"RbMolar", " ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"85.47", ",", " ", 
+       RowBox[{"\"\<Grams\>\"", "/", "\"\<Moles\>\""}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"RbMol", "   ", "=", " ", 
+     RowBox[{"RbMass", " ", "/", " ", "RbMolar"}]}], ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"-", " ", "Depletion"}]}], " ", 
+      RowBox[{"time", ":", " ", 
+       RowBox[{
+        RowBox[{"molar", " ", "basis", " ", "for", " ", "H2O", " ", 
+         RowBox[{
+          RowBox[{"(", 
+           RowBox[{"tighter", " ", "estimate"}], ")"}], " ", "--"}]}], "-", 
+        "\n", "   ", 
+        RowBox[{"1", " ", "mol", " ", "H2O", " ", 
+         RowBox[{"(", 
+          RowBox[{"18", " ", "g"}], ")"}], " ", "consumes", " ", "1", " ", 
+         "mol", " ", "Rb", " ", 
+         RowBox[{"(", 
+          RowBox[{"85.5", " ", "g"}], ")"}]}]}]}]}], ",", " ", 
+     RowBox[{
+      RowBox[{
+      "so", " ", "Rb", " ", "consumed", " ", "per", " ", "gram", " ", "\n", 
+       "   ", "of", " ", "impurity", " ", 
+       RowBox[{"is", " ", "~", "4.7"}], "x", " ", "higher", " ", "than", " ", 
+       "the", " ", "mass"}], "-", 
+      RowBox[{"basis", " ", "estimate", " ", 
+       RowBox[{"implies", ".", "\n", "   ", "Corrected"}], " ", "time", " ", 
+       RowBox[{"is", " ", "~", "4.7"}], "x", " ", 
+       RowBox[{"shorter", " ", "--"}], " ", "still", " ", "extremely", " ", 
+       RowBox[{"long", "."}]}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"MH2O", "              ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"18", ",", " ", 
+       RowBox[{"\"\<Grams\>\"", "/", "\"\<Moles\>\""}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"ImpurityMolFlowH2O", " ", "=", " ", 
+     RowBox[{"BadMassFlow", " ", "/", " ", "MH2O"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"TimeMolarH2O", "      ", "=", " ", 
+     RowBox[{"UnitConvert", "[", 
+      RowBox[{
+       RowBox[{"RbMol", " ", "/", " ", "ImpurityMolFlowH2O"}], ",", 
+       " ", "\"\<Years\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Rb depletion time (molar H2O stoich, 2 ppm) = \>\"", ",", 
+     " ", "TimeMolarH2O"}], "]"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+    "Ar", " ", "purity", " ", "is", " ", "not", " ", "a", " ", "concern", " ",
+      "for", " ", "Rb", " ", "lifetime", " ", "on", " ", "any", " ", 
+     "experimental", " ", "timescale"}], " ", "*)"}]}]}]], "Code",
+ CellChangeTimes->{
+  3.986497302219919*^9, {3.986497434533779*^9, 3.9864974352517834`*^9}, {
+   3.986497765199301*^9, 3.9864977659106903`*^9}, {3.986498165087494*^9, 
+   3.986498169478918*^9}, {3.986498284104746*^9, 3.986498284764202*^9}, {
+   3.986499426979845*^9, 3.9864994273063736`*^9}, {3.986499560393135*^9, 
+   3.986499616115288*^9}},
+ CellLabel->
+  "In[447]:=",ExpressionUUID->"938cfbe3-acda-eb42-9cfc-5a7f04f16548"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Rb depletion time (molar H2O stoich, 2 ppm) = \"\>", "\[InvisibleSpace]", 
+   TemplateBox[{"86.46287415300192`", "\"yr\"", "years", "\"Years\""},
+    "Quantity"]}],
+  SequenceForm["Rb depletion time (molar H2O stoich, 2 ppm) = ", 
+   Quantity[86.46287415300192, "Years"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{
+  3.986497302799217*^9, 3.986497435821148*^9, 3.9864977664916306`*^9, {
+   3.9864981443740883`*^9, 3.9864981699316597`*^9}, {3.986499607101715*^9, 
+   3.9864996171320763`*^9}},
+ CellLabel->
+  "During evaluation of \
+In[447]:=",ExpressionUUID->"c0731977-0f61-e64b-81c7-95dfb5bf16d7"]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{
+     "===", "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+       "===", "===", "===", "===", "===", "===", "===", "===", "===", "\n", 
+      "   ", 
+      RowBox[{"CELL", " ", "3"}]}], ":", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{
+       "Rb", " ", "Depletion", " ", "from", " ", "System", " ", "Leak", " ", 
+        "Rate", " ", 
+        RowBox[{"(", 
+         RowBox[{"Molar", " ", "Flow"}], ")"}], "\n", "   ", "\n", "   ", 
+        "Given", " ", "a", " ", "measured", " ", "helium", " ", "leak"}], "-", 
+       RowBox[{"check", " ", "result", " ", "of"}]}], " ", "\[LessEqual]", 
+      " ", 
+      RowBox[{
+       RowBox[{"1", "e"}], "-", 
+       RowBox[{"9", " ", "mbar", "*", 
+        RowBox[{"L", "/", "s"}]}]}]}]}], ",", "\n", "   ", 
+    RowBox[{
+     RowBox[{
+     "treats", " ", "the", " ", "entire", " ", "leak", " ", "as", " ", 
+      "reactive", " ", "gas", " ", 
+      RowBox[{"(", 
+       RowBox[{
+        RowBox[{"O2", " ", "or", " ", "H2O"}], ",", " ", 
+        RowBox[{"worst", " ", "case"}]}], ")"}], "\n", "   ", "and", " ", 
+      "asks", " ", "how", " ", "long", " ", "until", " ", "it", " ", "would", 
+      " ", "consume", " ", "the", " ", "Rb", " ", 
+      RowBox[{"charge", ".", "\n", "   ", "\n", "   ", "Uses"}], " ", "ideal",
+       " ", "gas", " ", "law", " ", "to", " ", "convert", " ", "throughput", " ",
+       "to", " ", "molar", " ", 
+      RowBox[{"flow", ":", "\n", "       ", "Q"}]}], " ", "=", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"(", 
+        RowBox[{"dn", "/", "dt"}], ")"}], " ", "*", " ", "R", " ", "*", " ", 
+       "T"}], "  ", "=", 
+      RowBox[{
+       RowBox[{">", "  ", 
+        RowBox[{"dn", "/", "dt"}]}], " ", "=", " ", 
+       RowBox[{
+        RowBox[{
+         RowBox[{"Q", " ", "/", " ", 
+          RowBox[{"(", 
+           RowBox[{"R", "*", "T"}], ")"}]}], "\n", "   ", "\n", "   ", "Unit",
+          " ", 
+         RowBox[{"check", ":", " ", 
+          RowBox[{"1", " ", "mbar", "*", "L"}]}]}], " ", "=", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"1", "e"}], "-", 
+          RowBox[{"3", " ", "bar", " ", "*", " ", "1", "e"}], "-", 
+          RowBox[{"3", " ", 
+           RowBox[{"m", "^", "3"}]}]}], " ", "=", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"1", "e"}], "-", 
+           RowBox[{"6", " ", "*", " ", "1", "e5", " ", "Pa", "*", 
+            RowBox[{"m", "^", "3"}]}]}], " ", "=", " ", 
+          RowBox[{
+           RowBox[{"0.1", " ", "J", "\n", "   ", "So", " ", 
+            RowBox[{
+             RowBox[{"Q", " ", "[", 
+              RowBox[{"mbar", "*", 
+               RowBox[{"L", "/", "s"}]}], "]"}], " ", "/", " ", 
+             RowBox[{"(", 
+              RowBox[{
+               RowBox[{"R", " ", "[", 
+                RowBox[{
+                 RowBox[{"J", "/", "mol"}], "/", "K"}], "]"}], " ", "*", " ", 
+               RowBox[{"T", " ", "[", "K", "]"}]}], ")"}]}], " ", "gives", " ", 
+            RowBox[{"mol", "/", 
+             RowBox[{"s", ".", " ", "Correct", "."}]}]}], "\n", "   ", "===", 
+           "===", "===", "===", "===", "===", "===", "===", "===", "===", "===",
+            "===", "===", "===", "===", "===", "===", "===", "===", 
+           "==="}]}]}]}]}]}]}]}], " ", "*)"}], "\n", "\n", 
+  RowBox[{"(*", " ", 
+   RowBox[{
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"-", " ", "Constants"}]}], " ", "and", " ", "leak", " ", 
+     RowBox[{"rate", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+  RowBox[{
+   RowBox[{
+    RowBox[{"R", "        ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"8.314", ",", " ", 
+       RowBox[{"\"\<Joules\>\"", "/", 
+        RowBox[{"(", 
+         RowBox[{"\"\<Moles\>\"", " ", "*", " ", "\"\<Kelvins\>\""}], 
+         ")"}]}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"T", "        ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"300", ",", " ", "\"\<Kelvins\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{
+    RowBox[{"LeakRate", " ", "=", " ", 
+     RowBox[{"Quantity", "[", 
+      RowBox[{"1*^-9", ",", " ", 
+       RowBox[{"\"\<Millibars\>\"", " ", "*", " ", 
+        RowBox[{"\"\<Liters\>\"", "/", "\"\<Seconds\>\""}]}]}], "]"}]}], 
+    ";"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"-", " ", "Molar"}]}], " ", "flow", " ", "of", " ", "leaked", " ", 
+      RowBox[{"gas", " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"MolarFlow", " ", "=", " ", 
+     RowBox[{"UnitConvert", "[", 
+      RowBox[{
+       RowBox[{"LeakRate", " ", "/", " ", 
+        RowBox[{"(", 
+         RowBox[{"R", " ", "*", " ", "T"}], ")"}]}], ",", " ", 
+       RowBox[{"\"\<Moles\>\"", "/", "\"\<Seconds\>\""}]}], "]"}]}], ";"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Molar leak rate = \>\"", ",", " ", "MolarFlow"}], "]"}], 
+   "   ", 
+   RowBox[{"(*", " ", 
+    RowBox[{"expected", ":", " ", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"~", "4"}], "e"}], "-", 
+      RowBox[{"14", " ", 
+       RowBox[{"mol", "/", "s"}]}]}]}], " ", "*)"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{"--", 
+       RowBox[{"-", " ", "Rb"}]}], " ", "supply", " ", 
+      RowBox[{
+       RowBox[{"(", "moles", ")"}], " ", "--"}]}], "-"}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"RbMol", " ", "=", " ", 
+     RowBox[{
+      RowBox[{"Quantity", "[", 
+       RowBox[{"0.1", ",", " ", "\"\<Grams\>\""}], "]"}], " ", "/", " ", 
+      RowBox[{"Quantity", "[", 
+       RowBox[{"85.47", ",", " ", 
+        RowBox[{"\"\<Grams\>\"", "/", "\"\<Moles\>\""}]}], "]"}]}]}], ";"}], 
+   "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{"--", 
+      RowBox[{"-", " ", "Depletion"}]}], " ", 
+     RowBox[{"time", ":", " ", "1", ":", 
+      RowBox[{
+       RowBox[{"1", " ", "molar", " ", 
+        RowBox[{
+         RowBox[{"(", 
+          RowBox[{
+           RowBox[{"e", ".", "g", ".", " ", "H2O"}], " ", "stoichiometry"}], 
+          ")"}], " ", "--"}]}], "-"}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"TimeOnToOne", " ", "=", " ", 
+     RowBox[{"UnitConvert", "[", 
+      RowBox[{
+       RowBox[{"RbMol", " ", "/", " ", "MolarFlow"}], ",", 
+       " ", "\"\<Years\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Rb depletion time (1:1 molar, H2O worst case) = \>\"", ",", 
+     " ", "TimeOnToOne"}], "]"}], "\n", "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"--", 
+        RowBox[{"-", " ", "Depletion"}]}], " ", 
+       RowBox[{"time", ":", " ", 
+        RowBox[{
+         RowBox[{"O2", " ", "stoichiometry", " ", 
+          RowBox[{"correction", " ", "--"}]}], "-", "\n", "   ", 
+         RowBox[{"4", " ", "Rb"}], " ", "+", " ", "O2"}]}]}], " ", "->", " ", 
+      RowBox[{"2", " ", "Rb2O"}]}], "  ", "=", 
+     RowBox[{">", "  ", 
+      RowBox[{
+      "1", " ", "mol", " ", "O2", " ", "consumes", " ", "4", " ", "mol", " ", 
+       "Rb", "\n", "   ", "So", " ", "O2", " ", "is", " ", "4", "x", " ", 
+       "more", " ", "aggressive", " ", "than", " ", "H2O", " ", "per", " ", 
+       "mole", " ", "of", " ", "leaked", " ", 
+       RowBox[{"gas", "."}]}]}]}], " ", "*)"}], "\n", 
+   RowBox[{
+    RowBox[{"TimeO2Stoich", " ", "=", " ", 
+     RowBox[{"UnitConvert", "[", 
+      RowBox[{
+       RowBox[{"RbMol", " ", "/", " ", 
+        RowBox[{"(", 
+         RowBox[{"4", " ", "*", " ", "MolarFlow"}], ")"}]}], ",", 
+       " ", "\"\<Years\>\""}], "]"}]}], ";"}], "\n", 
+   RowBox[{"Print", "[", 
+    RowBox[{"\"\<Rb depletion time (O2 stoich, 4 Rb per O2) = \>\"", ",", " ",
+      "TimeO2Stoich"}], "]"}], "\n", 
+   RowBox[{"(*", " ", 
+    RowBox[{"Both", " ", 
+     RowBox[{"cases", ":", " ", 
+      RowBox[{"hundreds", " ", "to", " ", "thousands", " ", "of", " ", 
+       RowBox[{"years", " ", "--"}], " ", "leak", " ", "rate", " ", "is", " ",
+        "negligible"}]}]}], " ", "*)"}]}]}]], "Code",
+ CellChangeTimes->{
+  3.9864973109960537`*^9, 3.9864974500783806`*^9, {3.986500547397806*^9, 
+   3.9865005544972553`*^9}},
+ CellLabel->
+  "In[468]:=",ExpressionUUID->"801724f8-d511-6f4b-b770-d36bb16c793e"],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Molar leak rate = \"\>", "\[InvisibleSpace]", 
+   TemplateBox[{"4.0093015796648233`*^-14", 
+     RowBox[{
+      "\"mol\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", "\"s\""}],
+      "moles per second", 
+     FractionBox["\"Moles\"", "\"Seconds\""]},
+    "Quantity"]}],
+  SequenceForm["Molar leak rate = ", 
+   Quantity[4.0093015796648233`*^-14, "Moles"/"Seconds"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.986497311387869*^9, 3.986497450448736*^9, 
+  3.9865005661007977`*^9},
+ CellLabel->
+  "During evaluation of \
+In[468]:=",ExpressionUUID->"cfc0be19-6b91-5a4a-9dd4-a0b3a301a990"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Rb depletion time (1:1 molar, H2O worst case) = \"\>", "\[InvisibleSpace]", 
+   TemplateBox[{"925.36051440161`", "\"yr\"", "years", "\"Years\""},
+    "Quantity"]}],
+  SequenceForm["Rb depletion time (1:1 molar, H2O worst case) = ", 
+   Quantity[925.36051440161, "Years"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.986497311387869*^9, 3.986497450448736*^9, 
+  3.986500566101799*^9},
+ CellLabel->
+  "During evaluation of \
+In[468]:=",ExpressionUUID->"76540365-c97f-3f4f-b2b6-5837c284f0a5"],
+
+Cell[BoxData[
+ InterpretationBox[
+  RowBox[{"\<\"Rb depletion time (O2 stoich, 4 Rb per O2) = \"\>", "\[InvisibleSpace]", 
+   TemplateBox[{"231.3401286004025`", "\"yr\"", "years", "\"Years\""},
+    "Quantity"]}],
+  SequenceForm["Rb depletion time (O2 stoich, 4 Rb per O2) = ", 
+   Quantity[231.3401286004025, "Years"]],
+  Editable->False]], "Print",
+ CellChangeTimes->{3.986497311387869*^9, 3.986497450448736*^9, 
+  3.9865005661027985`*^9},
+ CellLabel->
+  "During evaluation of \
+In[468]:=",ExpressionUUID->"bc86e4a8-abd2-8842-ab24-5c5fdb3a5132"]
+}, Open  ]]
+}, Open  ]]
+},
+WindowSize->{718.5, 735},
+WindowMargins->{{Automatic, -1032.9642857142858`}, {
+  774.4285714285713, Automatic}},
+FrontEndVersion->"14.3 for Microsoft Windows (64-bit) (July 8, 2025)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"67d1ebb3-0456-5949-a71d-5c7419423685"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[554, 20, 8592, 255, 1038, "Code",ExpressionUUID->"24bc1af0-fbb6-654f-8bf0-b074e7c915ed"],
+Cell[9149, 277, 1062, 21, 120, "Code",ExpressionUUID->"7a53e305-3676-9049-8a51-1e0662c94324"],
+Cell[CellGroupData[{
+Cell[10236, 302, 9377, 236, 963, "Code",ExpressionUUID->"c71c910d-b9d3-494b-8581-7512598222e2"],
+Cell[CellGroupData[{
+Cell[19638, 542, 617, 16, 23, "Print",ExpressionUUID->"d2719d03-243b-f84a-94c9-001fbe07783c"],
+Cell[20258, 560, 619, 16, 23, "Print",ExpressionUUID->"f733f970-5ce9-8540-9502-05192a7b5084"]
+}, Open  ]],
+Cell[20892, 579, 288, 6, 32, "Output",ExpressionUUID->"54352585-999a-8244-9f29-5943e7adcf73"],
+Cell[21183, 587, 291, 6, 32, "Output",ExpressionUUID->"67c51d59-5915-d94a-b0c8-19c0bd66fc45"],
+Cell[21477, 595, 286, 6, 32, "Output",ExpressionUUID->"d07beea7-d81e-fc4a-a5f6-61b1c5ce935f"],
+Cell[21766, 603, 516, 12, 22, "Print",ExpressionUUID->"b6613e9a-0ef0-da47-b812-d6464eabd953"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[22319, 620, 7579, 181, 685, "Code",ExpressionUUID->"938cfbe3-acda-eb42-9cfc-5a7f04f16548"],
+Cell[29901, 803, 654, 14, 24, "Print",ExpressionUUID->"c0731977-0f61-e64b-81c7-95dfb5bf16d7"]
+}, Open  ]],
+Cell[CellGroupData[{
+Cell[30592, 822, 8198, 209, 664, "Code",ExpressionUUID->"801724f8-d511-6f4b-b770-d36bb16c793e"],
+Cell[CellGroupData[{
+Cell[38815, 1035, 650, 16, 26, "Print",ExpressionUUID->"cfc0be19-6b91-5a4a-9dd4-a0b3a301a990"],
+Cell[39468, 1053, 546, 12, 24, "Print",ExpressionUUID->"76540365-c97f-3f4f-b2b6-5837c284f0a5"],
+Cell[40017, 1067, 546, 12, 24, "Print",ExpressionUUID->"bc86e4a8-abd2-8842-ab24-5c5fdb3a5132"]
+}, Open  ]]
+}, Open  ]]
+}
+]
+*)
+
+(* End of internal cache information *)
+
